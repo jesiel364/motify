@@ -1,9 +1,75 @@
 #: import hex kivy.utils.get_color_from_hex
 
+<CardFrase>
+    elevation: 10
+    border_radius: 20
+    radius: [15]
+    size_hint: None, None
+    size: '280dp', '180dp'
+    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+    MDBoxLayout:
+        padding: [20,20]
+        orientation: 'vertical'
+        MDLabel:
+            text: 'Advice'
+            theme_text_color: 'Secondary'
+            size_hint_y: None
+            height: self.texture_size[1]
+        
+        MDSeparator:
+            height: '1dp'
+
+
+        MDLabel:
+            text: "Gratitude is said to be the secret to happiness."
+
+        MDBoxLayout:
+            
+            canvas:
+                Color:
+                    rgba: [1, 0, 0, 1]
+            
+                Rectangle:
+                    size: self.size[0], self.size[1]
+                    pos: self.pos
+            
+            adaptive_width: True
+            width: dp(30)
+           
+
+            MDIconButton:
+                icon: 'language-python'
+                icon_size: '64sp'
+            MDIconButton:
+                icon: 'read'
+            MDIconButton:
+                icon: 'book'
+
+
+        
+            
+        
 
 <Inicio>:
     MDBoxLayout:
+    
+        padding: [5,50]
+        spacing: 50
         orientation: 'vertical'
-        MDLabel:
-            text: "Hello World"
+
+        canvas:
+            
+        
+            RoundedRectangle:
+                size: self.size[0], self.size[1]
+                pos: self.pos
+                radius: [dp(10), dp(10)]
+        
+        
+        CardFrase:
+
+        MDBoxLayout:
+
+
             
