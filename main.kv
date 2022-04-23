@@ -28,17 +28,22 @@
 
 
             MDLabel:
+                spacing: 10
                 id: lb_frase
+                size: self.size
                 text: root.frase
                 font_size: '22sp'
                 font_name: 'fonts/poppins/poppins-extralight.ttf'
+                text_align: 'center'
+            
             
             
 
         MDGridLayout:
             cols: 3
-            rows: 1
+            rows: 2
             adaptive_height: True
+            
                 
             canvas:
                 Rectangle:
@@ -46,6 +51,7 @@
                     pos: self.pos
                 # width: dp(40)
                 
+            
             AnchorLayout:
                 MDIconButton:
                     icon: 'content-copy'
@@ -67,7 +73,7 @@
         orientation: 'vertical'
         MDBoxLayout:
         
-            padding: [20,20]
+            padding: [30,20]
             spacing: 10
             orientation: 'vertical'
 

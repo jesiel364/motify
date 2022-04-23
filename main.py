@@ -55,6 +55,11 @@ class Motify(MDApp):
     
     def on_start(self):
         CardFrase().gerar_frase()
+        advice = requests.get('https://api.adviceslip.com/advice').json()
+        for key in advice:
+            conselho = advice.get(key)['advice']
+            CardFrase().frase = conselho
+            print(conselho)
 
         
 
