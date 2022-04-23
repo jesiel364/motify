@@ -18,6 +18,8 @@
             MDLabel:
                 text: 'Advice'
                 theme_text_color: 'Secondary'
+                # font_size: '22sp'
+                font_name: 'fonts/poppins/poppins-bold.ttf'
                 size_hint_y: None
                 height: self.texture_size[1]
             
@@ -26,7 +28,10 @@
 
 
             MDLabel:
-                text: "Gratitude is said to be the secret to happiness."
+                id: lb_frase
+                text: root.frase
+                font_size: '22sp'
+                font_name: 'fonts/poppins/poppins-extralight.ttf'
             
             
 
@@ -47,6 +52,7 @@
             AnchorLayout:
                 MDIconButton:
                     icon: 'book-refresh'
+                    on_release: root.gerar_frase()
             AnchorLayout:
                 MDIconButton:
                     icon: 'share-variant-outline'
