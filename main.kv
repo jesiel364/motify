@@ -1,23 +1,31 @@
 #: import hex kivy.utils.get_color_from_hex
 
 <Item@MDCard>:
-    elevation: 6
+    elevation: 10
     border_radius: 20
     radius: [15]
-
+    size_hint_y: None
     padding: [20,20]
 
-    MDLabel:
-        text: "Accept Advice."
-        theme_text_color: 'Primary'
-        font_size: '16sp'
-        font_name: 'fonts/poppins/poppins-bold.ttf'
+    MDBoxLayout:
+    
+        orientation: 'vertical'
+        spacing: 10
+        MDLabel:
+            text: "Accept Advice."
+            text_color: hex('#363636')
+            font_size: '16sp'
+            font_name: 'fonts/poppins/poppins-bold.ttf'
+
+        MDLabel:
+            text: "24 April 2022"
+            theme_text_color: 'Secondary'
 
 <CardFrase>
     elevation: 6
     border_radius: 20
     radius: [15]
-    # size_hint: None, None
+    
     # size: '280dp', '450dp'
     # pos_hint: {'center_x': 0.5,'center_y': 0.5}
     padding: [5, 0]
@@ -81,51 +89,70 @@
                     icon: 'share-variant-outline'        
 
 <Inicio>:
+    
     MDBoxLayout:
         orientation: 'vertical'
+        size_hint_y: .1
+    MDBoxLayout: #Box Pai
+        orientation: 'vertical'
+        padding: [20, 0]
+        canvas.before:
+            Color: 
+                rgba: hex('#f5f5f5')
+            RoundedRectangle:
+                size: self.size[0], self.size[1]
+                pos: self.pos
+                radius: [dp(10), dp(10)]
 
-        MDBoxLayout:
-            orientation: 'vertical'
-            size_hint_y: .1
-
-        MDBoxLayout:
         
-            padding: [30,20]
+
+        MDBoxLayout: #Filho1
+        
+            padding: [0,20]
             spacing: 10
             orientation: 'vertical'
             
-
-            canvas:
-                Color: 
-                    rgba: hex('#f5f5f5')
-                
             
-                RoundedRectangle:
-                    size: self.size[0], self.size[1]
-                    pos: self.pos
-                    radius: [dp(10), dp(10)]
-
-                
             
             AnchorLayout:
                 CardFrase:
 
-        MDBoxLayout:
-            padding: [30,20]
-            spacing: 10
-            size_hint: .9, .5
+        AnchorLayout: #Filho2
+            # size_hint_x: None
             orientation: 'vertical'
-            MDBoxLayout:
-                orientation: 'vertical'
-                MDLabel:
-                    text: "Recent"
-                    font_size: '18sp'
-                    font_name: 'fonts/poppins/poppins-semibold.ttf'
-                    theme_text_color: 'Secondary'
+            size_hint_y: .2
+            MDLabel:
+                text: "Recent"
+                font_size: '18sp'
+                font_name: 'fonts/poppins/poppins-semibold.ttf'
+                theme_text_color: 'Secondary'
 
+        MDBoxLayout: #Filho3
+        
+            # canvas:
+            #     Color: 
+            #         rgba: hex('#987457')
+                
             
+            #     RoundedRectangle:
+            #         size: self.size[0], self.size[1]
+            #         pos: self.pos
+            #         radius: [dp(10), dp(10)]
+            # padding: [20,20]
+            spacing: 10
+            size_hint_y: None
+            orientation: 'vertical'
+            
+            ScrollView:
 
-            Item:
+                MDList:
+
+                    Item:
+                    # Item:
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        size_hint_y: .1
                 
                             
                         
