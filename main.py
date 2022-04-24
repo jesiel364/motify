@@ -13,7 +13,7 @@ import requests
 kv = Builder.load_file('main.kv')
 
 if platform != 'android':
-    Window.size= 300, 500
+    Window.size= 350, 680
 
 class CardFrase(MDCard):
 

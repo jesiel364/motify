@@ -1,5 +1,18 @@
 #: import hex kivy.utils.get_color_from_hex
 
+<Item@MDCard>:
+    elevation: 6
+    border_radius: 20
+    radius: [15]
+
+    padding: [20,20]
+
+    MDLabel:
+        text: "Accept Advice."
+        theme_text_color: 'Primary'
+        font_size: '16sp'
+        font_name: 'fonts/poppins/poppins-bold.ttf'
+
 <CardFrase>
     elevation: 6
     border_radius: 20
@@ -12,7 +25,7 @@
     MDBoxLayout:
         orientation: 'vertical'
         MDBoxLayout:
-            padding: [5,20]
+            padding: [20,20]
 
             orientation: 'vertical'
             MDLabel:
@@ -25,10 +38,14 @@
             
             MDSeparator:
                 height: '1dp'
+            
+            # MDBoxLayout:
+            #     orientation: 'vertical'
+            #     size_hint_y: .1
 
 
             MDLabel:
-                spacing: 10
+             
                 id: lb_frase
                 size: self.size
                 text: root.frase
@@ -61,21 +78,22 @@
                     on_release: root.gerar_frase()
             AnchorLayout:
                 MDIconButton:
-                    icon: 'share-variant-outline'
-
-
-        
-            
-        
+                    icon: 'share-variant-outline'        
 
 <Inicio>:
     MDBoxLayout:
         orientation: 'vertical'
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            size_hint_y: .1
+
         MDBoxLayout:
         
             padding: [30,20]
             spacing: 10
             orientation: 'vertical'
+            
 
             canvas:
                 Color: 
@@ -86,27 +104,29 @@
                     size: self.size[0], self.size[1]
                     pos: self.pos
                     radius: [dp(10), dp(10)]
+
+                
             
             AnchorLayout:
                 CardFrase:
 
         MDBoxLayout:
-            size_hint: None, .5
+            padding: [30,20]
+            spacing: 10
+            size_hint: .9, .5
             orientation: 'vertical'
             MDBoxLayout:
                 orientation: 'vertical'
                 MDLabel:
                     text: "Recent"
+                    font_size: '18sp'
+                    font_name: 'fonts/poppins/poppins-semibold.ttf'
+                    theme_text_color: 'Secondary'
 
-            MDBoxLayout:
-                orientation: 'vertical'
-                ScrollView:
-                    
-                    MDLabel:
-                        text: "General and surprising."
+            
+
+            Item:
+                
                             
                         
-            
-   
-
-            
+        
