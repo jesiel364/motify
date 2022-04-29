@@ -1,6 +1,6 @@
 #: import hex kivy.utils.get_color_from_hex
 
-<Item@MDCard>:
+<Item>
     elevation: 10
     border_radius: 20
     radius: [15]
@@ -8,7 +8,6 @@
     padding: [20,20]
 
     MDBoxLayout:
-    
         orientation: 'vertical'
         spacing: 10
         MDLabel:
@@ -96,7 +95,7 @@
         size_hint_y: .1
     MDBoxLayout: #Box Pai
         orientation: 'vertical'
-        padding: [20, 0]
+        padding: [40, 40]
         canvas.before:
             Color: 
                 rgba: hex('#f5f5f5')
@@ -118,17 +117,20 @@
             AnchorLayout:
                 CardFrase:
 
-        AnchorLayout: #Filho2
+        MDBoxLayout: #Filho2
             # size_hint_x: None
             orientation: 'vertical'
-            size_hint_y: .2
+            size_hint_y: .6
+            spacing:30
+            pading: [0, 20]
             MDLabel:
+                size_hint_y:.1
                 text: "Recent"
                 font_size: '18sp'
                 font_name: 'fonts/poppins/poppins-semibold.ttf'
                 theme_text_color: 'Secondary'
 
-        MDBoxLayout: #Filho3
+        	MDBoxLayout: #Filho3
         
             # canvas:
             #     Color: 
@@ -140,20 +142,18 @@
             #         pos: self.pos
             #         radius: [dp(10), dp(10)]
             # padding: [20,20]
-            spacing: 10
-            size_hint_y: None
-            orientation: 'vertical'
+            	spacing: 10
+            	size_hint_y: .9
+            	orientation: 'vertical'
             
-            ScrollView:
+            	ScrollView:
 
-                MDList:
+                	MDList:
+                		id: lista
+						spacing:10
+                    	Item:
+                    	Item:
 
-                    Item:
-                    # Item:
-
-    MDBoxLayout:
-        orientation: 'vertical'
-        size_hint_y: .1
                 
                             
                         

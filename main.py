@@ -14,6 +14,10 @@ kv = Builder.load_file('main.kv')
 
 if platform != 'android':
     Window.size= 350, 570
+    
+class Item(MDCard):
+	text: StringProperty()
+	date: StringProperty()
 
 class CardFrase(MDCard):
     frase = StringProperty()
@@ -31,8 +35,10 @@ class CardFrase(MDCard):
             print(conselho)
   
 class Inicio(MDScreen):
-    def __init__(self, **kw):
-        super().__init__(**kw)
+    pass
+        
+        
+        
 
 class SM(ScreenManager):
     def __init__(self, **kwargs):
@@ -41,6 +47,13 @@ class SM(ScreenManager):
 
 class Motify(MDApp):
     def build(self):
+<<<<<<< HEAD
+=======
+        # self.theme_cls.theme_style= 'Light'
+        # self.theme_cls.primary_color = 'Orange'
+        
+        
+>>>>>>> origin/main
         return SM()
     
 if __name__ == '__main__':
