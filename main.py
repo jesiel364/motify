@@ -36,9 +36,6 @@ class CardFrase(MDCard):
   
 class Inicio(MDScreen):
     pass
-        
-        
-        
 
 class SM(ScreenManager):
     def __init__(self, **kwargs):
@@ -47,13 +44,6 @@ class SM(ScreenManager):
 
 class Motify(MDApp):
     def build(self):
-<<<<<<< HEAD
-=======
-        # self.theme_cls.theme_style= 'Light'
-        # self.theme_cls.primary_color = 'Orange'
-        
-        
->>>>>>> origin/main
         return SM()
     
 if __name__ == '__main__':
