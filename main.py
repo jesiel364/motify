@@ -9,59 +9,39 @@ from kivy.properties import StringProperty
 from kivymd.uix.card import MDCard
 import requests
 
-
+ 
 kv = Builder.load_file('main.kv')
 
 if platform != 'android':
     Window.size= 350, 570
 
 class CardFrase(MDCard):
-
     frase = StringProperty()
+    advice = requests.get('https://api.adviceslip.com/advice').json()
+    for key in advice:
+        conselho = advice.get(key)['advice']
+        frase = conselho
     
     def gerar_frase(self):
         
         advice = requests.get('https://api.adviceslip.com/advice').json()
         for key in advice:
             conselho = advice.get(key)['advice']
-            self.frase = conselho
+            self.ids.lb_frase.text = conselho
             print(conselho)
-            # frase=conselho
-
-    
-
-    
-    
-    
+  
 class Inicio(MDScreen):
     def __init__(self, **kw):
         super().__init__(**kw)
 
-    
-
 class SM(ScreenManager):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        
-
         self.add_widget(Inicio(name='inicio'))
 
 class Motify(MDApp):
-   
     def build(self):
-        # self.theme_cls.theme_style= 'Light'
-        # self.theme_cls.primary_color = 'Orange'
         return SM()
     
-    def on_start(self):
-        CardFrase().gerar_frase()
-        advice = requests.get('https://api.adviceslip.com/advice').json()
-        for key in advice:
-            conselho = advice.get(key)['advice']
-            CardFrase().frase = conselho
-            print(conselho)
-
-        
-
 if __name__ == '__main__':
     Motify().run()
