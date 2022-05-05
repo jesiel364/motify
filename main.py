@@ -1,4 +1,4 @@
-from calendar import c
+from kivymd.toast import toast
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.utils import platform
@@ -46,7 +46,7 @@ class Lista(MDList):
         db = cursor.fetchall()
 
         for key in db:
-            conselho = key['advice'][:25]
+            conselho = key['advice'][:35]
             criado_em = key['criado_em']
             _id = key['id']
             self.add_widget(Item(text=f'{conselho}...', date=criado_em, frase_id=str(_id)))
@@ -55,28 +55,37 @@ class Lista(MDList):
 
 class CardFrase(MDCard):
     frase = StringProperty()
-    advice = requests.get('https://api.adviceslip.com/advice').json()
-    for key in advice:
-        conselho = advice.get(key)['advice']
-        frase = conselho
-    
-    def gerar_frase(self):
-        data = datetime.datetime.now().strftime('%d/%m/%Y ás %H:%M')
-        
+    conn_error = "No internet connection"
+    try:
         advice = requests.get('https://api.adviceslip.com/advice').json()
         for key in advice:
             conselho = advice.get(key)['advice']
-            self.ids.lb_frase.text = conselho
-            print(conselho)
-            conn = sqlite3.connect('advices_db.db')
-            conn.row_factory = sqlite3.Row
-            cursor = conn.cursor()
-            cursor.execute(""" 
-            INSERT INTO recent_advice (advice, criado_em)
+            frase = conselho
+    except:
+        frase = conn_error
+    
+    def gerar_frase(self):
+        data = datetime.datetime.now().strftime('%d/%m/%Y ás %H:%M')
+        try:
+            advice = requests.get('https://api.adviceslip.com/advice').json()
+            for key in advice:
+                conselho = advice.get(key)['advice']
+                self.ids.lb_frase.text = conselho
+                print(conselho)
+                conn = sqlite3.connect('advices_db.db')
+                conn.row_factory = sqlite3.Row
+                cursor = conn.cursor()
+                cursor.execute(""" 
+                INSERT INTO recent_advice (advice, criado_em)
             values (?, ?)
             """, (conselho, str(data)))
-            print('Salvo.')
-            conn.commit()
+                print('Salvo.')
+                conn.commit()
+        except:
+            conn_error = "No internet connection"
+            self.ids.lb_frase.text = conn_error
+            toast(conn_error)
+            
 
     # def recente(self, frase_id):
     #     self.ids.lb_frase.text = 'frase_id'
@@ -90,6 +99,8 @@ class SM(ScreenManager):
         self.add_widget(Inicio(name='inicio'))
 
 class Motify(MDApp):
+    def copiar(self):
+        toast(CardFrase().frase)
     def build(self):
         return SM()
     

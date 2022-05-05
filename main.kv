@@ -1,4 +1,5 @@
 #: import hex kivy.utils.get_color_from_hex
+#:import Clipboard kivy.core.clipboard.Clipboard
 <Lista>
     spacing:5
 
@@ -34,17 +35,20 @@
     # size: '280dp', '450dp'
     # pos_hint: {'center_x': 0.5,'center_y': 0.5}
     padding: [5, 0]
+    size_hint_y:.8
+    size_hint_x: .8
+    
 
     MDBoxLayout:
         orientation: 'vertical'
         MDBoxLayout:
             padding: [20,20]
-
+        
             orientation: 'vertical'
             MDLabel:
                 text: 'Advice'
                 theme_text_color: 'Secondary'
-                # font_size: '22sp'
+                font_size: '20sp'
                 font_name: 'fonts/poppins/poppins-bold.ttf'
                 size_hint_y: None
                 height: self.texture_size[1]
@@ -86,6 +90,7 @@
             AnchorLayout:
                 MDIconButton:
                     icon: 'content-copy'
+                    on_release: app.copiar() 
             AnchorLayout:
                 MDIconButton:
                     icon: 'book-refresh'
@@ -95,68 +100,74 @@
                     icon: 'share-variant-outline'        
 
 <Inicio>:
-    
-    MDBoxLayout:
-        orientation: 'vertical'
-        size_hint_y: .1
-    MDBoxLayout: #Box Pai
-        orientation: 'vertical'
-        padding: [20, 10]
-        canvas.before:
-            Color: 
-                rgba: hex('#f5f5f5')
-            RoundedRectangle:
-                size: self.size[0], self.size[1]
-                pos: self.pos
-                radius: [dp(10), dp(10)]
 
-        
+    MDBottomNavigation:
+        panel_color: hex("#eeeaea")
+        selected_color_background: hex("#97ecf8")
+        text_color_active: 0, 0, 0, 1
 
-        MDBoxLayout: #Filho1
-        
-            padding: [0,20]
-            spacing: 10
-            orientation: 'vertical'
-            
-            
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Advice'
+            icon: 'book-outline'
+            badge_icon: "numeric-10"
             
             AnchorLayout:
                 CardFrase:
 
-        MDBoxLayout: #Filho2
-            # size_hint_x: None
-            orientation: 'vertical'
-            size_hint_y: .6
-            spacing:30
-            pading: [0, 20]
-            MDLabel:
-                size_hint_y:.1
-                text: "Recent"
-                font_size: '18sp'
-                font_name: 'fonts/poppins/poppins-semibold.ttf'
-                theme_text_color: 'Secondary'
-
-        	MDBoxLayout: #Filho3
-        
-                # canvas:
-                #     Color: 
-                #         rgba: hex('#987457')
-                    
-                
-                #     RoundedRectangle:
-                #         size: self.size[0], self.size[1]
-                #         pos: self.pos
-                #         radius: [dp(10), dp(10)]
-            # padding: [20,20]
-            	spacing: 10
-            	size_hint_y: .9
-            	orientation: 'vertical'
             
-            	ScrollView:
 
-                	Lista:
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'Favorits'
+            icon: 'heart'
+            badge_icon: "numeric-5"
 
+            MDBoxLayout: #Filho2
+                # size_hint_x: None
+                orientation: 'vertical'
+              
+                spacing:30
+                pading: [0, 20]
+                MDLabel:
+                    size_hint_y:.1
+                    text: "Recent"
+                    font_size: '18sp'
+                    font_name: 'fonts/poppins/poppins-semibold.ttf'
+                    theme_text_color: 'Secondary'
+    
+            	MDBoxLayout: #Filho3
+                	spacing: 10
+                	size_hint_y: .9
+                	orientation: 'vertical'
+                	ScrollView:
+                    	Lista:
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'Settings'
+            icon: 'cog-box'
+
+            MDBoxLayout:
+                orientation: "vertical"
                 
+                MDBoxLayout:
+                   
+                    MDLabel:
+                        text: "Dark Mode"
+    
+                    MDSwitch:
+                MDBoxLayout:
+                    MDLabel:
+                        text: "Example"
+                        
+                    MDSwitch:
+                      
+                MDRaisedButton:
+                    text: "Save"
+                   
+                   
+                    
                             
                         
         
